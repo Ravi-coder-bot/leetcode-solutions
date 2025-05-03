@@ -11,12 +11,15 @@ int longestSubarrayWithSumK(vector<int> arr, int k){
         if(sum == k){
             maxLength = max(maxLength, i+1);
         }
-        int rem = sum - k;
+        long long rem = sum - k;
         if(prevSumMap.find(rem) != prevSumMap.end()){
             int length = i-prevSumMap[rem];
             maxLength = max(maxLength, length);
         }
-        prevSumMap[sum] = i; 
+        if(prevSumMap.find(sum)==prevSumMap.end()){
+            prevSumMap[sum] = i; 
+        }
+        
     }
     return maxLength;
 }
